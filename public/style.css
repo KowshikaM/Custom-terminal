@@ -1,0 +1,77 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1e1e1e;
+    color: white;
+    font-family: monospace;
+    margin: 0;
+}
+
+.terminal {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 600px;
+    background-color: black;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#terminalOutput {
+    background-color: black;
+    color: white;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 10px;
+    padding: 10px;
+    resize: none;
+    border: none;
+    overflow-y: scroll;
+}
+
+#commandInput {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #666;
+}
+/* File Upload Section Styles */
+.file-upload {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#fileInput {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.file-upload button {
+    width: 100%;
+}
