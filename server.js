@@ -8,13 +8,15 @@ const app = express();
 
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve index.html at the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html','fuzz_target.c','inputs','outputs'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html','style.css','fuzz_target.c','inputs','outputs'));
 });
 
 // Endpoint to receive the command and execute it
