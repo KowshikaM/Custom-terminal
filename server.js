@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve index.html at the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html','style.css','script.js','fuzz_target.c','inputs','sam.bmp','outputs'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Endpoint to receive the command and execute it

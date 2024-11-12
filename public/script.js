@@ -1,4 +1,4 @@
-const backendURL = "https://afc9-2401-4900-4ddf-f63e-148-eb91-c50b-d0ee.ngrok-free.app/"
+const backendURL = "https://2503f20c-33d2-42c9-a252-3e32ae999a01-00-333mj5s20cksj.pike.replit.dev//"
 document.getElementById('runButton').addEventListener('click', () => {
     const commandInput = document.getElementById('commandInput');
     const terminalOutput = document.getElementById('terminalOutput'); // Fixed ID
@@ -6,7 +6,7 @@ document.getElementById('runButton').addEventListener('click', () => {
 
 
     // Send command to the server
-    fetch('http://localhost:3000/execute', {
+    fetch(`${bankendURL}/execute`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
