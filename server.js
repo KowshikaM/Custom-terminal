@@ -5,7 +5,7 @@ const { exec } = require('child_process');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
+
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -44,6 +44,7 @@ app.post('/execute', (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, '0.0.0.0', () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
