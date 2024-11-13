@@ -5,8 +5,6 @@ const { exec } = require('child_process');
 const cors = require('cors');
 
 const app = express();
-const cors = require('cors');
-
 app.use(bodyParser.json());
 app.use(cors({origin:'*'}));
 
