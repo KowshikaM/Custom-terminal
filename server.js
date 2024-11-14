@@ -6,13 +6,13 @@ const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
-//app.use(cors({origin:'*'}));
+app.use(cors({origin:'*'}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve index.html at the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html','style.css','fuzz_target.c','inputs','outputs'));
+  return res.sendFile(path.join(__dirname, 'public', 'index.html','style.css','fuzz_target.c','inputs','outputs'));
 });
 
 // Endpoint to receive the command and execute it
@@ -23,7 +23,7 @@ app.post('/execute', (req, res) => {
     if (command.startsWith('./fuzz_target')) {
         exec(command, (error, stdout, stderr) => {
             if (error) {
-                res.status(500).send(`Error: ${stderr}`);
+               return res.status(500).send(`Error: ${stderr}`);
                 //res.send(`Error: ${error.message}`);
                 //return;
             }
@@ -33,7 +33,7 @@ app.post('/execute', (req, res) => {
         // Execute other commands, e.g., 'ls', with basic error handling
         exec(command, (error, stdout, stderr) => {
             if (error) {
-                res.send(`Error: ${error.message}`);
+                return res.send(`Error: ${error.message}`);
                 return;
             }
             res.send(stderr || stdout);
