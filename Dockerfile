@@ -1,14 +1,12 @@
 # Use the Ubuntu base image
 FROM ubuntu:latest
 
-# Install Node.js and npm
+# Install necessary dependencies (curl, Node.js, and glibc)
 RUN apt update && apt install -y \
     curl \
+    libc6 \
     && curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
     && apt install -y nodejs
-
-# Install glibc to run the C binary
-RUN apt install -y libc6
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -22,7 +20,7 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Copy your C program binary and inputs
+# Copy your C program binary and inputs (ensure fuzz_target is compiled)
 COPY fuzz_target /usr/src/app/fuzz_target
 COPY public/inputs /usr/src/app/inputs
 
