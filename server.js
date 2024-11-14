@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors({origin:'*'}));
+//app.use(cors({origin:'*'}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
