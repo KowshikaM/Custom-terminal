@@ -1,31 +1,35 @@
-# Use the Ubuntu base image
-FROM ubuntu:latest
+# Use a stable Ubuntu base image
+FROM ubuntu:20.04
 
-# Install necessary dependencies (curl, Node.js, and glibc)
+# Use an alternate mirror to prevent APT-related issues
+RUN sed -i 's|http://archive.ubuntu.com/ubuntu|http://mirrors.edge.kernel.org/ubuntu|g' /etc/apt/sources.list
+
+# Install required packages and clean up APT cache
 RUN apt update && apt install -y \
+    gcc \
+    libc6-dev \
     curl \
-    libc6 \
-    && curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
-    && apt install -y nodejs
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt install -y nodejs \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
 # Install Node.js dependencies
 RUN npm install
 
-# Copy the rest of the application code
+# Copy the rest of the application code to the working directory
 COPY . .
 
-# Copy your C program binary and inputs (ensure fuzz_target is compiled)
-COPY fuzz_target /usr/src/app/fuzz_target
-COPY public/inputs /usr/src/app/inputs
+# Compile the C program
+RUN gcc -o fuzz_target fuzz_target.c
 
-# Expose the port for the Node.js application
+# Expose the application port
 EXPOSE 3000
 
-# Run the C program and the Node.js application when the container starts
-CMD ["sh", "-c", "./fuzz_target /usr/src/app/inputs/sam.bmp && node server.js"]
+# Define the container's startup command
+CMD ["sh", "-c", "./fuzz_target /usr/src/app/public/inputs/sam.bmp && node server.js"]
