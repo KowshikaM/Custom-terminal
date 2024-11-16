@@ -27,7 +27,7 @@ document.getElementById('runButton').addEventListener('click', () => {
     // Clear the input after command is run
     commandInput.value = '';
 });
-Smooth scrolling for anchor links
+//Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
