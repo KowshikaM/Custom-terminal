@@ -3,15 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Terminal</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Bitmap Fuzzer Project</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="terminal">
-        <textarea id="terminalOutput" readonly></textarea>
-        <input type="text" id="commandInput" placeholder="Enter command here">
-        <button id="runButton">Run</button>
+    <header>
+        <div class="header-container">
+            <h1>Bitmap Fuzzing Project</h1>
+            
+        </div>
+    </header>
+    <main>
+    <center>
+        <h1>Welcome to the fuzz the bitmap file!</h2>
+        <p>File format fuzzing is a testing method that identifies vulnerabilities by providing unexpected or malformed files to applications. This technique helps uncover bugs, such as crashes or security flaws, in software handling various file types.</p>
+        
+    </center>
+    <section>
+        <p><strong>Bitmap fuzzing</strong> is a technique used to test software for vulnerabilities by generating and feeding random or malformed bitmap image files. This process helps reveal issues like crashes, buffer overflows, or memory leaks in applications that handle bitmap images, enhancing software robustness and security.</p>
+    </section>
+    <div class="content-container">
+        
+            <section style="margin-top: 10px;margin-bottom: 50px;">
+          
+            <p>The sample bitmap fuzzing done in this terminal</p>
+            <p><strong>Step 1 : </strong>Type <u>ls</u> command in the terminal and click run button.
+               The list of files will appear.
+            <p><strong>Step 2 : </strong>Type <u>pwd</u> command in the terminal and click run button.
+               It will show the current directory.</p>
+            <p><strong>Step 3 : </strong>The sample bitmap file is stored in the name called sam.bmp and the fuzz target is in the file named fuzz_target.c
+               These are the files needed for fuzzing.</p>
+            <p><strong>Step 4 : </strong>Type <u>./fuzz_target public/inputs/sam.bmp</u> in the terminal and click run button.
+               The libfuzzer will fuzz the bitmap file and give the output.</p>
+            </section>
+            </div>
+            
+           
+        </div>
+        <div class="terminal-container">
+            
+            <textarea id="terminalOutput" readonly></textarea>
+            <input type="text" id="commandInput" placeholder="Enter command here">
+            <button id="runButton">Run</button>
+        </div>
     </div>
+    <section style="margin-top: 20px;margin-bottom: 30px;">
+        <h2>LibFuzzer</h2>
+        <p>LibFuzzer is a powerful tool for fuzz testing, integrated with LLVM. It efficiently detects vulnerabilities in your bitmap processing code by generating random inputs and monitoring for crashes.</p>
+        <ul>
+        <li>
+           It works by mutating inputs and monitoring the execution path to detect bugs and vulnerabilities.
+        </li>
+        <li>
+           Targeted at C/C++ applications, especially those with functions that process user inputs.
+        </li>
+        <li>
+            Integrates directly with LLVM-based projects and requires compilation with Clang.
+        </li>
+        <li>
+            Efficient in detecting memory errors like buffer overflows.
+        </li>
+        <li>
+           Supports integration with sanitizers like AddressSanitizer and MemorySanitizer for more accurate results.
+        </li>
+        </ul>
+    </section>
+
+    <section style="margin-top: 20px;margin-bottom: 30px;">
+        <h2>AFL (American Fuzzy Lop)</h2>
+        <p>AFL is a widely used fuzz testing tool that employs genetic algorithms to find bugs in applications. It automatically generates test cases based on the program's feedback.</p>
+        <ul>
+        <li>
+            It is primarily used for fuzzing C/C++ applications but can be adapted for other languages.
+        </li>
+        <li>
+            AFL requires instrumentation of the target program to track code coverage during execution.
+        </li>
+        <li>
+            It generates random inputs and evolves them based on how much code they cover, improving fuzzing efficiency.
+        </li>
+        <li>
+            AFL helps find memory corruption bugs such as buffer overflows
+        </li>
+        </ul>
+    </section>  
+    
+    <section style="margin-top: 20px;margin-bottom: 50px;">
+        <h2>LibFuzzer vs. AFL</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>LibFuzzer</th>
+                    <th>AFL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Integration</td>
+                    <td>Integrates with LLVM</td>
+                    <td>Standalone tool</td>
+                </tr>
+                <tr>
+                    <td>Performance</td>
+                    <td>Optimized for speed</td>
+                    <td>Good performance, but slower than LibFuzzer</td>
+                </tr>
+                <tr>
+                    <td>Input Generation</td>
+                    <td>Generates inputs based on code coverage</td>
+                    <td>Uses genetic algorithms for input generation</td>
+                </tr>
+                <tr>
+                    <td>Setup</td>
+                    <td>Requires LLVM setup</td>
+                    <td>Easy to set up</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section style="margin-top: 20px;margin-bottom: 70px;">
+        <h2><strong>Applications of Bitmap Fuzzing</strong></h2>
+        <p>Bitmap fuzzing is widely applicable in various fields, including:</p>
+        <ul>
+        <li>
+            Image Processing Software: Tests for vulnerabilities in image rendering and processing.
+        </li>
+        <li>
+            Data Conversion Tools: Ensures safe conversion between bitmap and other file formats.
+        </li>
+        <li>
+            Game Development: Validates and secures the handling of image assets in games.
+        </li>
+        <li>
+            Operating Systems & File Viewers: Identifies potential vulnerabilities in systems displaying bitmap files.
+        </li>
+        <li>
+            Cybersecurity Defense: Helps defend against maliciously crafted bitmap files by finding vulnerabilities.
+        </li>
+        <li>
+            Digital Forensics: Ensures forensic tools can handle malformed bitmap files without data loss.
+        </li>
+        </ul>
+    </section>
+    
+    </div>
+    </main>
+    
+    </div>
+    </body>
+
+   
+
     <script src="script.js"></script>
 </body>
 </html>

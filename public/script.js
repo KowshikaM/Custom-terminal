@@ -1,4 +1,4 @@
-const backendURL = 'https://2503f20c-33d2-42c9-a252-3e32ae999a01-00-333mj5s20cksj.pike.replit.dev/';
+const backendURL = 'https://2503f20c-33d2-42c9-a252-3e32ae999a01-00-333mj5s20cksj.pike.replit.dev';
 document.getElementById('runButton').addEventListener('click', () => {
     const commandInput = document.getElementById('commandInput');
     const terminalOutput = document.getElementById('terminalOutput'); // Fixed ID
@@ -6,7 +6,7 @@ document.getElementById('runButton').addEventListener('click', () => {
 
 
     // Send command to the server
-    fetch(backendURL + 'execute', {
+    fetch('http://localhost:3000/execute', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -27,3 +27,27 @@ document.getElementById('runButton').addEventListener('click', () => {
     // Clear the input after command is run
     commandInput.value = '';
 });
+Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Animation effect on page load
+window.onload = () => {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            section.style.opacity = 1;
+            section.style.transform = 'translateY(0)';
+        }, 100);
+    });
+};
