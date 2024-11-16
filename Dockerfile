@@ -1,17 +1,28 @@
 # Use a stable Ubuntu base image
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
-# Use an alternate mirror to prevent APT-related issues
-RUN sed -i 's|http://archive.ubuntu.com/ubuntu|http://mirrors.edge.kernel.org/ubuntu|g' /etc/apt/sources.list
-
-# Install required packages and clean up APT cache
+# Install dependencies
 RUN apt update && apt install -y \
     gcc \
     libc6-dev \
     curl \
+    wget \
+    software-properties-common \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt install -y nodejs \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Upgrade glibc to 2.34
+RUN wget http://ftp.gnu.org/gnu/libc/glibc-2.34.tar.gz && \
+    tar -xvf glibc-2.34.tar.gz && \
+    cd glibc-2.34 && \
+    mkdir build && cd build && \
+    ../configure --prefix=/opt/glibc-2.34 && \
+    make -j$(nproc) && make install && \
+    rm -rf /glibc-2.34*
+
+# Update the dynamic linker to use the new glibc
+ENV LD_LIBRARY_PATH=/opt/glibc-2.34/lib:$LD_LIBRARY_PATH
 
 # Set the working directory
 WORKDIR /usr/src/app
