@@ -6,7 +6,7 @@ document.getElementById('runButton').addEventListener('click', () => {
 
 
     // Send command to the server
-    fetch(backendURL + 'execute', {
+    fetch('/execute', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -9,7 +9,9 @@ RUN apt update && apt install -y \
     wget \
     nodejs \
     npm \
-    libstdc++6
+    libstdc++6 \
+    git \
+    build-essential
 
 # Download and prepare glibc-runner
 RUN curl -Lo /glibc-runner https://github.com/jumanjiman/glibc-runner/releases/download/v2.34-1/glibc-runner \
