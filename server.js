@@ -44,6 +44,7 @@ app.post('/execute', (req, res) => {
 
 // Start the server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on http://localhost:${PORT} or https://2503f20c-33d2-42c9-a252-3e32ae999a01-00-333mj5s20cksj.pike.replit.dev/:${PORT}`);
+
 });
